@@ -11,16 +11,26 @@ public class LoginScript : MonoBehaviour {
     Button login;
     Text warning;
     string id;
+    public Dictionary<int, string> dictionary = new Dictionary<int, string>();
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         id = Guid.NewGuid().ToString();
 
         warning = GameObject.Find("Warning_Text").GetComponent<Text>();
 
         login = this.GetComponent<Button>();
         login.onClick.AddListener(LoginGame);
-	}
+
+        dictionary.Add(1, "Bottle");
+        dictionary.Add(2, "Sate");
+        dictionary.Add(3, "Jamu");
+        dictionary.Add(4, "Curry_rice");
+        dictionary.Add(5, "Tasbih");
+        dictionary.Add(6, "Water");
+        dictionary.Add(7, "Milk_s");
+        dictionary.Add(8, "Milk_l");
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -49,7 +59,7 @@ public class LoginScript : MonoBehaviour {
                     {
                         LoadStatus(msg);
                         Time.timeScale = 1;
-                        SceneManager.LoadScene("Map");
+                        SceneManager.LoadScene("Catch");
                     }
                     else
                     {
@@ -101,13 +111,15 @@ public class LoginScript : MonoBehaviour {
     {
 
         PlayerPrefs.SetString("username", (string)msg["username"]);
-        //PlayerPrefs.SetInt("Health", (int)msg["data"][0]);
-        //PlayerPrefs.SetInt("Bones", (int)msg["data"][1]);
-        //PlayerPrefs.SetInt("XP", (int)msg["data"][2]);
-        //PlayerPrefs.SetInt("Sleep", (int)msg["data"][3]);
-        //PlayerPrefs.SetInt("Food", (int)msg["data"][4]);
-        //PlayerPrefs.SetInt("Walk", (int)msg["data"][5]);
-        //PlayerPrefs.SetInt("Fun", (int)msg["data"][6]);
+        PlayerPrefs.SetString("id_user", (string)msg["id"]);
+        for (int i = 0; i < 8; i++)
+        {
+            int j = 1 + i;
+            Debug.Log("player_" + dictionary[j] + " diisi " + (int)msg["data"][i]);
+            PlayerPrefs.SetInt("player_" + dictionary[j], (int)msg["data"][i]);
+            Debug.Log(PlayerPrefs.GetInt("player_" + dictionary[j]));
+        }
+
         PlayerPrefs.SetString("petName", (string)msg["username"]);
     }
 

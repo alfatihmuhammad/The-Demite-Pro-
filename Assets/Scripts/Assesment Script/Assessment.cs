@@ -8,6 +8,7 @@ using Mono.Data.Sqlite;
 using System;
 using System.Linq;
 using UnityEngine.Networking;
+using CymaticLabs.Unity3D.Amqp;
 //using SQLite4Unity3d;
 
 public class Assessment : MonoBehaviour
@@ -45,6 +46,8 @@ public class Assessment : MonoBehaviour
     int sylB;
     int ambA;
     int ambB;
+    string wordToSpeak; //pass
+    string wordSpoken; //pass
     int subK0A;
     int subK0B;
     int subK1A;
@@ -59,11 +62,9 @@ public class Assessment : MonoBehaviour
     int level;
 
     double eMH;
-    public float damage;
+    public float damage; //pass
     int c;
-
-
-
+    
     // Use this for initialization
     void Start()
     {
@@ -228,6 +229,7 @@ public class Assessment : MonoBehaviour
         IDataReader reader = dbcmd.ExecuteReader();
         while (reader.Read())
         {
+            wordToSpeak = reader.GetString(1);
             phone = reader.GetString(2);
             sylA = reader.GetInt32(8);
             ambA = reader.GetInt32(9);
@@ -391,7 +393,7 @@ public class Assessment : MonoBehaviour
                 }
             }
 
-            string word = wordData[0].word;
+            wordSpoken = wordData[0].word;
             int score = wordData[0].score;
             sylB = wordData[0].numSyllables;
             ambB = countAmbiguity;
@@ -403,14 +405,14 @@ public class Assessment : MonoBehaviour
             subK0B = countSubKategori0(FieldAnswer.text);
             subK1B = countSubKategori1(FieldAnswer.text);
             subK2B = countSubKategori2(FieldAnswer.text);
-
             
-
             AssesmentWord(FieldQuest.text);
             ManhattanDistance(phone, ipa);
-            
-            LevenshteinDistance(phone, ipa);
+            InsertAssessment("1", wordToSpeak, wordSpoken, (int)damage);
+
+            //LevenshteinDistance(phone, ipa);
             _gun.Shoot();
+            
             keyWord();
             //phoneticResult();
             //TextBoxAssesment.text = "";
@@ -465,6 +467,60 @@ public class Assessment : MonoBehaviour
         var count = word.Count(x => x == 'h' || x == 'i' || x == 'r' || x == 'u' || x == 'w' || x == 'y');
         return count;
     }
+
+    #region coba_db
+    string id = Guid.NewGuid().ToString();
+
+    void Process(AmqpExchangeReceivedMessage received)
+    {
+        var receivedJson = System.Text.Encoding.UTF8.GetString(received.Message.Body);
+        var msg = CymaticLabs.Unity3D.Amqp.SimpleJSON.JSON.Parse(receivedJson);
+
+        if (msg != null)
+        {
+            string msgId = (string)msg["id"];
+            if (msgId == id)
+            {
+                string type = (string)msg["type"];
+                if (type == "insert_assessment")
+                {
+                    Debug.Log("INSERT assessment");
+                }
+            }
+        }
+    }
+
+    public void InsertAssessment(string id_user, string word, string spoken, int damage)
+    {
+        AmqpControllerScript.amqpControl.exchangeSubscription.Handler = Process;
+
+        RequestJson request = new RequestJson();
+        request.id = id;
+        request.type = "insert_assessment";
+        request.id_user = id_user;
+        request.word = word;
+        request.spoken = spoken;
+        request.damage = damage;
+
+        string requestJson = JsonUtility.ToJson(request);
+        Debug.Log(requestJson);
+
+        AmqpClient.Publish(AmqpControllerScript.amqpControl.requestExchange, AmqpControllerScript.amqpControl.requestRoutingKey, requestJson);
+    }
+
+    [Serializable]
+    public class RequestJson
+    {
+        public string id;
+        public string type;
+        public string id_user;
+        public string word;
+        public string spoken;
+        public int damage;
+    }
+
+    #endregion
+
 }
 
 

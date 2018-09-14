@@ -363,6 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldObj: {fileID: 0}
+  zoomObj: {fileID: 0}
 --- !u!1 &772105187
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,7 +679,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 132, y: 29.9}
+  m_AnchoredPosition: {x: 132, y: 29.900024}
   m_SizeDelta: {x: 263.9, y: 59.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1471087463
@@ -906,5 +907,11 @@ MonoBehaviour:
   centerPosY: 0
   tileX: 0
   tileY: 0
+  Ghosts:
+  - {fileID: 100000, guid: f6757b69ba104ee45978ed8dc1db7b55, type: 3}
+  - {fileID: 100002, guid: bc9f00926b6ff544482cb40e20ebdcc8, type: 3}
+  - {fileID: 100002, guid: 884098905d701ad44b3fa76f0a22f0d1, type: 3}
+  - {fileID: 100002, guid: 3f7f96d54297d014c93c91a99a4386bf, type: 3}
+  - {fileID: 100002, guid: 39ed8aa96f44c7f43a4ca49ee143d5fe, type: 3}
   okToSentPetPos: 0
   posText: {fileID: 1471087463}

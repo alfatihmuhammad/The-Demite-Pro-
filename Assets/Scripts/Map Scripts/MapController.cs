@@ -6,6 +6,7 @@ using System.IO;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using CymaticLabs.Unity3D.Amqp;
+using Random = UnityEngine.Random;
 
 public class MapController : MonoBehaviour {
 
@@ -39,6 +40,9 @@ public class MapController : MonoBehaviour {
     public int tileX;
     public int tileY;
 
+    int randomEnemy;
+    public GameObject[] Ghosts;
+
     List<OtherPlayerData> otherPlayerDataList;
 
     private bool firstStart = false;
@@ -65,8 +69,8 @@ public class MapController : MonoBehaviour {
         //posText = GameObject.Find("PosText").GetComponent<Text>();
 
         this.InitDefaultProperties();
-        //this.UpdateGpsAndSendRequest();
-        StartCoroutine(this.StartGPS());
+        this.UpdateGpsAndSendRequest();
+        //StartCoroutine(this.StartGPS());
 
         //jika ingin mengatifkan GPS dari HP
         //uncomment startcouroutine
@@ -90,8 +94,8 @@ public class MapController : MonoBehaviour {
     {
         this.uniqueId = Guid.NewGuid().ToString();
         this.playerName = PlayerPrefs.GetString("username");
-        this.latitude = -6.929427f; //- 6.890439f; //-6.915108f; //-6.890439, 107.611256
-        this.longitude = 107.626651f; // 107.611256f; //107.607206f;
+        this.latitude = -6.888659f;//-6.929427f; //- 6.890439f; //-6.915108f; //-6.890439, 107.611256
+        this.longitude = 107.610374f; // 107.611256f; //107.607206f;
         this.lastLatitude = float.MinValue;
         this.lastLongitude = float.MinValue;
         this.petName = PlayerPrefs.GetString("petName"); // PlayerPrefs.GetString("petName");
@@ -150,8 +154,8 @@ public class MapController : MonoBehaviour {
     // update latitude and longitude value and send the request to server through rabbitmq
     void UpdateGpsAndSendRequest()
     {
-        this.latitude = Input.location.lastData.latitude;
-        this.longitude = Input.location.lastData.longitude;
+        //this.latitude = Input.location.lastData.latitude;
+        //this.longitude = Input.location.lastData.longitude;
         posText.text = "lat= " + this.latitude + " --- Long=" + this.longitude;
 
         if (this.lastLatitude != this.latitude || this.lastLongitude != this.longitude)
@@ -847,8 +851,11 @@ public class MapController : MonoBehaviour {
 
     void ShowGhost(Vector3 textPosStart, string objectName, string typeName)
     {
+        randomEnemy = Random.Range(0, 4);
+
         //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        GameObject Ghost = Instantiate(Resources.Load("pocong")) as GameObject;
+        //GameObject Ghost = Instantiate(Resources.Load("pocong")) as GameObject;
+        GameObject Ghost = Instantiate(Ghosts[randomEnemy]) as GameObject;
 
         if(typeName == "buildingName" || typeName == "poiName")
         {

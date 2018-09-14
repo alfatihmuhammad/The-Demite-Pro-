@@ -17,6 +17,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Map.unity
     guid: 0fcc942c16261ae45b9c8d1f24d1940f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Catch.unity
     guid: 3f45cdf5c5a490647afd80f2ae214a32
+  - enabled: 1
+    path: Assets/Scenes/Score.unity
+    guid: b401e538dde0df24a947ed3e3a9ccf92
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: e6c6462d3105ec147a7ed8f53539fe7b

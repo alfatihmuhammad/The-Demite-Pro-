@@ -54,12 +54,12 @@ public class LoginScript : MonoBehaviour {
                 string type = (string)msg["type"];
                 if(type == "login")
                 {
-                    int count = (int)msg["count"];
-                    if(count == 1)
+                    int count = (int)msg["count"]; // dr server LoginResponseJson 
+                    if (count == 1)
                     {
                         LoadStatus(msg);
                         Time.timeScale = 1;
-                        SceneManager.LoadScene("Catch");
+                        SceneManager.LoadScene("Score");
                     }
                     else
                     {
@@ -111,7 +111,7 @@ public class LoginScript : MonoBehaviour {
     {
 
         PlayerPrefs.SetString("username", (string)msg["username"]);
-        PlayerPrefs.SetString("id_user", (string)msg["id"]);
+        PlayerPrefs.SetString("id_user", (string)msg["id_user"]);
         for (int i = 0; i < 8; i++)
         {
             int j = 1 + i;
@@ -130,5 +130,6 @@ public class LoginScript : MonoBehaviour {
         public string type;
         public string username;
         public string password;
+        public int id_user;
     }
 }

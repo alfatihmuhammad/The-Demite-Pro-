@@ -63,7 +63,7 @@ public class ShopScript : MonoBehaviour {
             int jumlahbaru = iss[i].numItem + jumlahLama;
             PlayerPrefs.SetInt("player_" + iss[i].itemName, jumlahbaru);
             Debug.Log("buyed " + iss[i].itemName +" sebanyak  "+ iss[i].numItem+" jadi total " + PlayerPrefs.GetInt("player_" + iss[i].itemName));
-            UpdateInventory(PlayerPrefs.GetInt("id_user").ToString(), dictionary[iss[i].itemName].ToString(), jumlahbaru.ToString());
+            UpdateInventory(PlayerPrefs.GetString("id_user"), dictionary[iss[i].itemName].ToString(), jumlahbaru.ToString());
         }
         resetShopCart();
     }
@@ -146,22 +146,22 @@ public class ShopScript : MonoBehaviour {
         }
     }
 
-    public void InsertInventory(string id_user, string id_item, string item_total)
-    {
-            AmqpControllerScript.amqpControl.exchangeSubscription.Handler = Process;
+    //public void InsertInventory(string id_user, string id_item, string item_total)
+    //{
+    //        AmqpControllerScript.amqpControl.exchangeSubscription.Handler = Process;
 
-            RequestJson request = new RequestJson();
-            request.id = id;
-            request.type = "insert_inv";
-            request.id_user = id_user;
-            request.id_item = id_item;
-            request.item_total = item_total;
+    //        RequestJson request = new RequestJson();
+    //        request.id = id;
+    //        request.type = "insert_inv";
+    //        request.id_user = id_user;
+    //        request.id_item = id_item;
+    //        request.item_total = item_total;
 
-            string requestJson = JsonUtility.ToJson(request);
-            Debug.Log(requestJson);
+    //        string requestJson = JsonUtility.ToJson(request);
+    //        Debug.Log(requestJson);
 
-            AmqpClient.Publish(AmqpControllerScript.amqpControl.requestExchange, AmqpControllerScript.amqpControl.requestRoutingKey, requestJson);
-    }
+    //        AmqpClient.Publish(AmqpControllerScript.amqpControl.requestExchange, AmqpControllerScript.amqpControl.requestRoutingKey, requestJson);
+    //}
 
     [Serializable]
     public class RequestJson

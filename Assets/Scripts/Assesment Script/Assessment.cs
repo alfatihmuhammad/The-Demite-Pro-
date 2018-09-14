@@ -494,7 +494,7 @@ public class Assessment : MonoBehaviour
     {
         AmqpControllerScript.amqpControl.exchangeSubscription.Handler = Process;
 
-        RequestJson request = new RequestJson();
+        AssessmentRequestJson request = new AssessmentRequestJson();
         request.id = id;
         request.type = "insert_assessment";
         request.id_user = id_user;
@@ -509,7 +509,7 @@ public class Assessment : MonoBehaviour
     }
 
     [Serializable]
-    public class RequestJson
+    public class AssessmentRequestJson
     {
         public string id;
         public string type;

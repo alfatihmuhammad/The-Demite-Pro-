@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour {
 
-     public GameObject DamageObject;
-     private Assessment AccesControl;
+    public GameObject DamageObject;
+    private Assessment AccesControl;
     public float damage = 30f;
     public float range = 100f;
     public Camera camera;
@@ -25,7 +25,7 @@ public class Gun : MonoBehaviour {
 
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range))
         {
-            Debug.Log("AAAAAAA" + hit.transform.name);
+            //Debug.Log("AAAAAAA" + hit.transform.name);
 
             target = hit.transform.GetComponent<TheTarget>();
             if (target != null)

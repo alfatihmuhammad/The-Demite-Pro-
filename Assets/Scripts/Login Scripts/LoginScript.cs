@@ -59,11 +59,7 @@ public class LoginScript : MonoBehaviour {
                     {
                         LoadStatus(msg);
                         Time.timeScale = 1;
-<<<<<<< HEAD
-                        SceneManager.LoadScene("Score");
-=======
-                        SceneManager.LoadScene("Map");
->>>>>>> bc5f39d76eee29db2338fb4cafeaac3cea5fb36d
+                        SceneManager.LoadScene("Catch");
                     }
                     else
                     {
@@ -127,6 +123,7 @@ public class LoginScript : MonoBehaviour {
         PlayerPrefs.SetString("petName", (string)msg["username"]);
     }
 
+    //data request
     [Serializable]
     public class LoginRequestJson
     {

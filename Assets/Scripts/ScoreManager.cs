@@ -7,24 +7,47 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
 
-    public Text ghost_name, speed, dv, max_hp;
+    public Text ghost_name, speed, dv, max_hp, description;
     public Text word, spoken, damage;
 
     string id ;
+    public int count;
+    int limit;
+
+    public GameObject rowGo;
+    public Transform rowGoParent;
+
+    //List<GameObject> listGO = new List<GameObject>();
+    public GameObject[] duplikatnya = new GameObject[8];
+    bool clicked = false;
 
     void Start()
     {
         id = Guid.NewGuid().ToString();
         ReadGhost();
-        ReadAssessment();
 
-        int count = 2;
-
-        for (int i = 0; i < count; i++) {
-            //ReadAssessment();
-        }
+        limit = 0;
+        count = 0;
+        ReadAssessment(0); //nge read baris 1 aja soalnya proses ternyata terakhir, jadi gabisa ngitung count
+        limit++;
+        
     }
-    
+
+    public void ClickReadAssessment() {  // nge read baris2 selanjutnya
+        //int i = 0;
+        if (clicked == false) {
+            do
+            {
+                ReadAssessment(limit);
+                limit++;
+                //i++;
+                Debug.Log("Lim " + limit + " COUNT " + count);
+            }
+            while (limit < count); 
+        }        
+        clicked = true;
+    }
+
     public void ReadGhost() {
         AmqpControllerScript.amqpControl.exchangeSubscription.Handler = Process;
 
@@ -38,15 +61,16 @@ public class ScoreManager : MonoBehaviour {
         Debug.Log("READ GHOST");
     }
 
-    public void ReadAssessment()
+    public void ReadAssessment(int limit)
     {
         AmqpControllerScript.amqpControl.exchangeSubscription.Handler = Process;
 
         ScoreRequestJson request = new ScoreRequestJson();
         request.id = id;
         request.type = "read_assessment";
-        //request.id_user = PlayerPrefs.GetString("id_user");
-        request.id_catch = "1";
+        request.limit = limit.ToString();
+        request.id_catch = PlayerPrefs.GetString("id_catch");
+        //request.id_catch = "7"; //GANTI
 
         string requestToJson = JsonUtility.ToJson(request);
         AmqpClient.Publish(AmqpControllerScript.amqpControl.requestExchange, AmqpControllerScript.amqpControl.requestRoutingKey, requestToJson);
@@ -69,29 +93,41 @@ public class ScoreManager : MonoBehaviour {
                 {
                     Debug.Log("Process READ GHOST");
                     LoadGhostDescription(msg);
-                }else if (type == "read_assessment")
+                }
+                else if (type == "read_assessment")
                 {
                     Debug.Log("Process READ ASSESSMENT");
-                    LoadScoreAssessment(msg);
+                    LoadScoreAssessment(msg, limit);
+                    Debug.Log("limit "+limit);
                 }
             }
         }
     }
 
-    void LoadGhostDescription(CymaticLabs.Unity3D.Amqp.SimpleJSON.JSONNode msg)
+    public void LoadGhostDescription(CymaticLabs.Unity3D.Amqp.SimpleJSON.JSONNode msg)
     {
         ghost_name.text = (string)msg["data"][0];
         speed.text = (string)msg["data"][1];
         dv.text = (string)msg["data"][2];
         max_hp.text = (string)msg["data"][3];
+        description.text = (string)msg["data"][4];
         //Debug.Log(PlayerPrefs.GetString("id_user"));
     }
 
-    void LoadScoreAssessment(CymaticLabs.Unity3D.Amqp.SimpleJSON.JSONNode msg)
+    public void LoadScoreAssessment(CymaticLabs.Unity3D.Amqp.SimpleJSON.JSONNode msg, int n)
     {
-        word.text = (string)msg["data"][0];
-        spoken.text = (string)msg["data"][1];
-        damage.text = (string)msg["data"][2];
+        count = msg["count"];
+        Debug.Log("count "+count );
+
+        duplikatnya[n] = Instantiate(rowGo, rowGoParent);
+        Text text_word = duplikatnya[n].transform.Find("Word").gameObject.GetComponent<Text>();
+        if(text_word == null)
+            Debug.Log("NULLLLLLL ");
+        text_word.text = (string)msg["data"][0];
+        Text text_spoken = duplikatnya[n].transform.Find("Spoken").gameObject.GetComponent<Text>();
+        text_spoken.text = (string)msg["data"][1];
+        Text text_damage = duplikatnya[n].transform.Find("Damage").gameObject.GetComponent<Text>();
+        text_damage.text = (string)msg["data"][2];
     }
 
     [Serializable]
@@ -101,9 +137,10 @@ public class ScoreManager : MonoBehaviour {
         public string type;
         //public string id_user;
         public string id_catch;
-        public string word;
-        public string spoken;
-        public int damage;
+        public string limit;
+        //public string word;
+        //public string spoken;
+        //public int damage;
     }
 
     public class GhostCatchedRequestJson
@@ -114,5 +151,6 @@ public class ScoreManager : MonoBehaviour {
         public string ghost_speed;
         public string destruct_val;
         public string max_health;
+        public string description;
     }
 }

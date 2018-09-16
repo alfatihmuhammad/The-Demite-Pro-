@@ -369,7 +369,6 @@ public class Assessment : MonoBehaviour
             DataMuse[] wordData = JsonHelper.FromJson<DataMuse>(jsonString);
             //TextBoxAssesment.text = "";
             
-            
             string simWords = "";
             DataMuse last = wordData.Last();
             List<string> similarWords = new List<string>();
@@ -408,7 +407,7 @@ public class Assessment : MonoBehaviour
             
             AssesmentWord(FieldQuest.text);
             ManhattanDistance(phone, ipa);
-            InsertAssessment("1", wordToSpeak, wordSpoken, (int)damage);
+            InsertAssessment(PlayerPrefs.GetString("id_catch"), wordToSpeak, wordSpoken, (int)damage);
 
             //LevenshteinDistance(phone, ipa);
             _gun.Shoot();
@@ -468,7 +467,8 @@ public class Assessment : MonoBehaviour
         return count;
     }
 
-    #region coba_db
+    #region insert to db assessment
+
     string id = Guid.NewGuid().ToString();
 
     void Process(AmqpExchangeReceivedMessage received)
@@ -490,14 +490,14 @@ public class Assessment : MonoBehaviour
         }
     }
 
-    public void InsertAssessment(string id_user, string word, string spoken, int damage)
+    public void InsertAssessment(string id_catch, string word, string spoken, int damage)
     {
         AmqpControllerScript.amqpControl.exchangeSubscription.Handler = Process;
 
         AssessmentRequestJson request = new AssessmentRequestJson();
         request.id = id;
         request.type = "insert_assessment";
-        request.id_user = id_user;
+        request.id_catch = id_catch;
         request.word = word;
         request.spoken = spoken;
         request.damage = damage;
@@ -513,7 +513,7 @@ public class Assessment : MonoBehaviour
     {
         public string id;
         public string type;
-        public string id_user;
+        public string id_catch;
         public string word;
         public string spoken;
         public int damage;

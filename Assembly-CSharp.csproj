@@ -70,7 +70,6 @@
      <Compile Include="Assets\CymaticLabs\Amqp\Scripts\ExceptionUnityEvent.cs" />
      <Compile Include="Assets\CymaticLabs\Amqp\Scripts\UnityAmqpExchangeSubscription.cs" />
      <Compile Include="Assets\CymaticLabs\Amqp\Scripts\UnityAmqpQueueSubscription.cs" />
-     <Compile Include="Assets\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\Assesment Script\Assessment.cs" />
      <Compile Include="Assets\Scripts\Assesment Script\SQLite.cs" />
      <Compile Include="Assets\Scripts\CameraAsBackground.cs" />
@@ -90,6 +89,7 @@
      <Compile Include="Assets\Scripts\Map Scripts\Triangulator.cs" />
      <Compile Include="Assets\Scripts\NameController.cs" />
      <Compile Include="Assets\Scripts\PetController.cs" />
+     <Compile Include="Assets\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\Shoot Scripts\AudioMixedToggle.cs" />
      <Compile Include="Assets\Scripts\Shoot Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Shoot Scripts\GUIManager.cs" />

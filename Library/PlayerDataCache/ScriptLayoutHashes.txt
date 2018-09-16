@@ -3,7 +3,10 @@ SceneListBegin?
 Assets/Scenes/Splashscreen.unity
 Assets/Scenes/Login.unity
 Assets/Scenes/SignUp.unity
+Assets/Scenes/Map.unity
 Assets/Scenes/Catch.unity
+Assets/Scenes/Score.unity
+Assets/Scenes/Shop.unity
 SceneListEnd?
 f62d1e12c4ea2e5d19ca5a2c81b0bf32 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.TiltShift
 38fb62bbaf846875632a95c60aa0c3ef Assembly-CSharp.dll:.ShopScript
@@ -61,7 +64,6 @@ c63db43c730fa2cbb8ca07de15898cb6 UnityEngine.UI.dll:UnityEngine.UI.Toggle
 f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 86d36c43c53541d667100dc90b89cfba UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ItemSlot
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 49cd62a578efc0a599b810a2b66cd49c UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -167,7 +169,7 @@ f37c50b97fa80ad465aa7a2f1f592930 Assembly-CSharp.dll:.TargetManager
 29f1697d20ae2fcaa3509d3fcf3dd442 Assembly-CSharp.dll:.TheTarget
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.PostEffectsHelper
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SpeechRecognizerDemoSceneManager
-e0b4d4ee7355335c933ba151561af9eb Assembly-CSharp.dll:.MapController
+86a16b49508abc67ec02cf39ab4b3ffb Assembly-CSharp.dll:.MapController
 b26b3a55de2a8cbeee573d45c8848f09 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ScreenSpaceAmbientOcclusion
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -186,6 +188,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 a6913be68d2afd07cbe789b81a76dc91 Assembly-CSharp.dll:.AmqpControllerScript
 e88de6c3a5a42ba791320e7f45f2d0d6 Assembly-CSharp.dll:.AudioMixedToggle
 1f33e819155dc2fbf23de1853197f4a7 Assembly-CSharp.dll:.FieldOfView
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ItemSlot
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.NameController
 4aadab9e3e4d34f6e069833451e815bb Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.CreaseShading
 e2b50e4e1e5006d87e7ebe8a724e8f6d Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ContrastEnhance
@@ -211,6 +214,7 @@ a51173280b81aed3c792da6e9cebc4cd Assembly-CSharp-firstpass.dll:UnityStandardAsse
 a51173280b81aed3c792da6e9cebc4cd Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Vortex
 2f264043a6bb59ca3369df5a4d180e17 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.CameraMotionBlur
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+03792f09bdc5ca20c7ecc02a0aa78832 Assembly-CSharp.dll:.ScoreManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.InsertItem
 44f5ee0d41a5178cef4f2642ffbb84a7 Assembly-CSharp.dll:.MoveTowards
 09d999c572576ff60055a7969363c8fe Assembly-CSharp.dll:.GyroCamera

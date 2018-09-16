@@ -45,14 +45,12 @@ public class ItemScript : MonoBehaviour
                 //cari teks, ganti amount
                 Text textnyaDuplikat = duplikatnya[i].transform.Find("Amount/Text").gameObject.GetComponent<Text>(); //text itu child dr amount
                 textnyaDuplikat.text = PlayerPrefs.GetInt("player_" + nameItem[i]).ToString();
-                //Debug.Log("if 1 = " + i);
             }
             //destroy jika item kosong
             else if (PlayerPrefs.GetInt("player_" + nameItem[i]) == 0 && isIstantiated[i] == true)
             {
                 Destroy(duplikatnya[i], 0.001f);
                 isIstantiated[i] = false;
-                //Debug.Log("if 2 = " + i);
             }
             //jika kosong semua, tampilin tulisan "empty"
             if (isIstantiated[i] == false) 

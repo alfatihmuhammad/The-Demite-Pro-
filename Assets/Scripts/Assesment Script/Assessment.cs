@@ -27,7 +27,7 @@ public class Assessment : MonoBehaviour
     public Gun _gun ;
 
     //result assesment
-
+    public bool onResult = false;
 
 
     //public Text debugText;
@@ -36,7 +36,7 @@ public class Assessment : MonoBehaviour
     private SpeechRecognizer AccesControl;
     bool onData;
 
-    public Gun gun;
+    //public Gun gun;
 
     //assaesment
     int MH; // manhattan distance
@@ -410,9 +410,10 @@ public class Assessment : MonoBehaviour
             InsertAssessment(PlayerPrefs.GetString("id_catch"), wordToSpeak, wordSpoken, (int)damage);
 
             //LevenshteinDistance(phone, ipa);
-            _gun.Shoot();
-            
+            onResult = true;
+
             keyWord();
+            _gun.Shoot();
             //phoneticResult();
             //TextBoxAssesment.text = "";
             //TextBoxAssesment.text += "Manhattan: " + MH;
@@ -437,6 +438,10 @@ public class Assessment : MonoBehaviour
             StartCoroutine(getUnityWebRequest());
 
 
+        }
+        else
+        {
+            onResult = false;
         }
     }
 

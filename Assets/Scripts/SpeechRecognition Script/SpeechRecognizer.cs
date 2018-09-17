@@ -222,6 +222,10 @@ public class SpeechRecognizer : MonoBehaviour {
             _speechManager.StartListening(1, "en-US");
 
         }
+        else
+        {
+            StopSpeech();
+        }
 
 
 

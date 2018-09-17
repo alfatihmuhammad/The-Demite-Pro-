@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour {
     public float range = 100f;
     public Camera camera;
     public bool onOver = true;
+    bool conResult;
 
     TheTarget target;
 
@@ -50,19 +51,25 @@ public class Gun : MonoBehaviour {
         //if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range)) {
         //    Debug.Log("AAAAAAA"+hit.transform.name);
 
-        if (onOver == true)
+        AccesControl = DamageObject.GetComponent<Assessment>();
+        conResult = AccesControl.onResult;
+        if (conResult == true)
         {
-           target = hit.transform.GetComponent<TheTarget>();
-           if (target != null)
+            target = hit.transform.GetComponent<TheTarget>();
+            if (target != null)
             {
                 //        onOver = true;
-                AccesControl = DamageObject.GetComponent<Assessment>();
+
                 damage = AccesControl.damage;
-                 
+
                 target.TakeDamage(damage);
             }
         }
-       
+        else
+        {
+            damage = 0;
+        }
+
         //else
         //{
         //    onOver = false;

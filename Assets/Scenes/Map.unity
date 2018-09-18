@@ -908,10 +908,10 @@ MonoBehaviour:
   tileX: 0
   tileY: 0
   Ghosts:
-  - {fileID: 100000, guid: f6757b69ba104ee45978ed8dc1db7b55, type: 3}
-  - {fileID: 100002, guid: bc9f00926b6ff544482cb40e20ebdcc8, type: 3}
-  - {fileID: 100002, guid: 884098905d701ad44b3fa76f0a22f0d1, type: 3}
-  - {fileID: 100002, guid: 3f7f96d54297d014c93c91a99a4386bf, type: 3}
-  - {fileID: 100002, guid: 39ed8aa96f44c7f43a4ca49ee143d5fe, type: 3}
+  - {fileID: 1990265384180544, guid: 49243650e1b3cc440af6ef2be142b778, type: 2}
+  - {fileID: 1983192772927148, guid: 7df4b4e94fbb4fc4c9d1b5b05fbbae1b, type: 2}
+  - {fileID: 1949727853644020, guid: 0111ea754c0fdcf4fa29d19d1644ae71, type: 2}
+  - {fileID: 1048000423350674, guid: f3233b12a3c06b245be9e9a84ed078f7, type: 2}
+  - {fileID: 1775870482360240, guid: f76d1d87aa186424f9a09eeaf8b86dcc, type: 2}
   okToSentPetPos: 0
   posText: {fileID: 1471087463}

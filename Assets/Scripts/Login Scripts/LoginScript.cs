@@ -59,7 +59,7 @@ public class LoginScript : MonoBehaviour {
                     {
                         LoadStatus(msg);
                         Time.timeScale = 1;
-                        SceneManager.LoadScene("Catch");
+                        SceneManager.LoadScene("Map");
                     }
                     else
                     {

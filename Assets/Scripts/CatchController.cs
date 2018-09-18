@@ -21,9 +21,29 @@ public class CatchController : MonoBehaviour {
 
             if(Physics.Raycast(ray, out raycastHit))
             {
-                if(raycastHit.collider.tag == "Pocong")
+                if (raycastHit.collider.tag == "Pocong")
                 {
-                    SceneManager.LoadScene("Catch");
+                    SceneManager.LoadScene("CatchPocong");
+                }
+
+                if (raycastHit.collider.tag == "Sundel")
+                {
+                    SceneManager.LoadScene("CatchSundel");
+                }
+
+                if (raycastHit.collider.tag == "ButoIjo")
+                {
+                    SceneManager.LoadScene("CatchButoIjo");
+                }
+
+                if (raycastHit.collider.tag == "Genderuwo")
+                {
+                    SceneManager.LoadScene("CatchGenderuwo");
+                }
+
+                if (raycastHit.collider.tag == "Kuntianak")
+                {
+                    SceneManager.LoadScene("CatchKuntilanak");
                 }
             }
         }

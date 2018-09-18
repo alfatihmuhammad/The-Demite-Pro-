@@ -851,7 +851,7 @@ public class MapController : MonoBehaviour {
 
     void ShowGhost(Vector3 textPosStart, string objectName, string typeName)
     {
-        randomEnemy = Random.Range(0, 4);
+        randomEnemy = Random.Range(0, 5);
 
         //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         //GameObject Ghost = Instantiate(Resources.Load("pocong")) as GameObject;

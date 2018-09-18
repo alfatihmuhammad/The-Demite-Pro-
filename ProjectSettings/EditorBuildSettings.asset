@@ -5,24 +5,36 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Splashscreen.unity
     guid: 6bda88d78540e3249b07aee613f8ca2b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Login.unity
     guid: 458da8f6b2276c24395cdf75064233e2
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SignUp.unity
     guid: 80b3892b3750bd442abd83cfca06e1e0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Map.unity
     guid: 0fcc942c16261ae45b9c8d1f24d1940f
   - enabled: 1
-    path: Assets/Scenes/Catch.unity
+    path: Assets/Scenes/CatchPocong.unity
     guid: 3f45cdf5c5a490647afd80f2ae214a32
+  - enabled: 1
+    path: Assets/Scenes/CatchButoIjo.unity
+    guid: d27da2bdff256194bb11efc6a8434b01
+  - enabled: 1
+    path: Assets/Scenes/CatchGenderuwo.unity
+    guid: 9d071ca1193691446846e46ecfc49280
+  - enabled: 1
+    path: Assets/Scenes/CatchKuntilanak.unity
+    guid: 2e393bb682055fc45ba793cc0f47c489
+  - enabled: 1
+    path: Assets/Scenes/CatchSundel.unity
+    guid: d54fedf53394f18478ac82b3bf5b80b8
   - enabled: 1
     path: Assets/Scenes/Score.unity
     guid: b401e538dde0df24a947ed3e3a9ccf92
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: e6c6462d3105ec147a7ed8f53539fe7b

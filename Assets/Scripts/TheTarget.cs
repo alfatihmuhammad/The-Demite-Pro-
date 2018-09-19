@@ -9,16 +9,18 @@ using UnityEngine.SceneManagement;
 public class TheTarget : MonoBehaviour {
     //SITS ON EVERY GHOST AT SCENE CATCH!!
 
+    public int id_ghost;
     public float health = 100f;
     public Image healthBar;
     public Text popUpDamage;
     string id;
 
     void Start() {
+        PlayerPrefs.SetInt("id_ghost", id_ghost);
         id = Guid.NewGuid().ToString();
         popUpDamage.gameObject.SetActive(false);
         Debug.Log("ID USER : " + PlayerPrefs.GetString("id_user"));
-        CreateNewIdCatch(PlayerPrefs.GetString("id_user"), "1"); //"1" nya DIGANTI ID GHOST
+        CreateNewIdCatch(PlayerPrefs.GetString("id_user"), id_ghost); //"1" nya DIGANTI ID GHOST
     }
 
     public void TakeDamage(float amount) {
@@ -67,7 +69,7 @@ public class TheTarget : MonoBehaviour {
         }
     }
 
-    public void CreateNewIdCatch(string id_user, string id_ghost)
+    public void CreateNewIdCatch(string id_user, int id_ghost)
     {
         AmqpControllerScript.amqpControl.exchangeSubscription.Handler = Process;
 
@@ -89,7 +91,7 @@ public class TheTarget : MonoBehaviour {
         public string id;
         public string type;
         public string id_user;
-        public string id_ghost;
+        public int id_ghost;
     }
 
     #endregion

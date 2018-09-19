@@ -4,11 +4,14 @@ using UnityEngine;
 using CymaticLabs.Unity3D.Amqp;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour {
 
     public Text ghost_name, speed, dv, max_hp, description;
     public Text word, spoken, damage;
+    public Image ghostImage;
+    public Sprite[] ghost = new Sprite[7];
 
     string id ;
     public int count;
@@ -53,6 +56,7 @@ public class ScoreManager : MonoBehaviour {
 
         GhostCatchedRequestJson request = new GhostCatchedRequestJson();
         request.id = id;
+        request.id_ghost = PlayerPrefs.GetInt("id_ghost");
         request.type = "read_ghost";
 
         string requestToJson = JsonUtility.ToJson(request);
@@ -111,6 +115,7 @@ public class ScoreManager : MonoBehaviour {
         dv.text = (string)msg["data"][2];
         max_hp.text = (string)msg["data"][3];
         description.text = (string)msg["data"][4];
+        ghostImage.sprite = ghost[PlayerPrefs.GetInt("id_ghost")];
         //Debug.Log(PlayerPrefs.GetString("id_user"));
     }
 
@@ -130,6 +135,10 @@ public class ScoreManager : MonoBehaviour {
         text_damage.text = (string)msg["data"][2];
     }
 
+    public void BackToMap() {
+        SceneManager.LoadScene("Map");
+    }
+
     [Serializable]
     public class ScoreRequestJson
     {
@@ -147,10 +156,10 @@ public class ScoreManager : MonoBehaviour {
     {
         public string id;
         public string type;
-        public string ghost_name;
-        public string ghost_speed;
-        public string destruct_val;
-        public string max_health;
-        public string description;
+        public int id_ghost;
+        //public string ghost_speed;
+        //public string destruct_val;
+        //public string max_health;
+        //public string description;
     }
 }
